@@ -1,0 +1,7 @@
+
+nswFuelApi:
+  apiKey: "API Key from NSW Fuel API"
+  apiSecret: "API Secret from NSW Fuel API"
+
+mapify:
+  apiKey: "API Key from mapify.io"
