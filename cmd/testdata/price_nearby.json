@@ -1,0 +1,182 @@
+{
+  "stations": [
+    {
+      "brandid": "1-GFYV-1",
+      "stationid": "1-GN9E-364",
+      "brand": "7-Eleven",
+      "code": 296,
+      "name": "7-Eleven Wahroonga",
+      "address": "1579 Pacific Highway (Corner Redleaf Avenue), Wahroonga NSW 2076",
+      "location": {
+        "distance": 3.72,
+        "latitude": -33.719857,
+        "longitude": 151.116805
+      },
+      "state": "NSW"
+    },
+    {
+      "brandid": "1-3L9CXTK",
+      "stationid": "1-2XDI9E0",
+      "brand": "Ampol",
+      "code": 2608,
+      "name": "Ampol Woolworths Thornleigh",
+      "address": "200-202 Pennant Hills Road, THORNLEIGH NSW 2120",
+      "location": {
+        "distance": 4.77,
+        "latitude": -33.7266,
+        "longitude": 151.08363
+      },
+      "state": "NSW"
+    },
+    {
+      "brandid": "1-GFYV-4",
+      "stationid": "1-GN9E-63",
+      "brand": "Coles Express",
+      "code": 591,
+      "name": "Coles Express Thornleigh",
+      "address": "188-190 Pennant Hills Rd, Thornleigh NSW 2120",
+      "location": {
+        "distance": 4.56,
+        "latitude": -33.725031,
+        "longitude": 151.085021
+      },
+      "state": "NSW"
+    },
+    {
+      "brandid": "1-GFYV-6",
+      "stationid": "1-GPPT-461",
+      "brand": "Metro Fuel",
+      "code": 1377,
+      "name": "Metro Fuel Hornsby",
+      "address": "275 Pacific Highway, Hornsby NSW 2077",
+      "location": {
+        "distance": 0.66,
+        "latitude": -33.690987,
+        "longitude": 151.099631
+      },
+      "state": "NSW"
+    },
+    {
+      "brandid": "1-GFYV-0",
+      "stationid": "1-GN9E-388",
+      "brand": "BP",
+      "code": 322,
+      "name": "BP Asquith",
+      "address": "Cnr Pacific Highway & Jersey Street, Asquith NSW 2077",
+      "location": {
+        "distance": 0.21,
+        "latitude": -33.689447,
+        "longitude": 151.106412
+      },
+      "state": "NSW"
+    },
+    {
+      "brandid": "1-3L9CXTK",
+      "stationid": "1-2VBLGLV",
+      "brand": "Ampol",
+      "code": 2436,
+      "name": "Ampol Woolworths Waitara",
+      "address": "59-61 Pacific Highway, WAITARA NSW 2077",
+      "location": {
+        "distance": 2.55,
+        "latitude": -33.710531,
+        "longitude": 151.102447
+      },
+      "state": "NSW"
+    },
+    {
+      "brandid": "1-GFYV-4",
+      "stationid": "1-GN9E-154",
+      "brand": "Coles Express",
+      "code": 63,
+      "name": "Coles Express Hornsby",
+      "address": "194-206 Pacific Hwy, Hornsby NSW 2077",
+      "location": {
+        "distance": 2.24,
+        "latitude": -33.7072,
+        "longitude": 151.099147
+      },
+      "state": "NSW"
+    },
+    {
+      "brandid": "1-3L9CXTK",
+      "stationid": "1-3625I7G",
+      "brand": "Ampol",
+      "code": 17297,
+      "name": "Ampol Woolworths Mount Colah",
+      "address": "603 Pacific Hwy, MOUNT COLAH NSW 2079",
+      "location": {
+        "distance": 2.12,
+        "latitude": -33.670381,
+        "longitude": 151.115192
+      },
+      "state": "NSW"
+    }
+  ],
+  "prices": [
+    {
+      "stationcode": 296,
+      "fueltype": "E10",
+      "price": 207.9,
+      "priceunit": "litre",
+      "lastupdated": "2022-07-06 23:58:03",
+      "state": "NSW"
+    },
+    {
+      "stationcode": 2608,
+      "fueltype": "E10",
+      "price": 207.9,
+      "priceunit": "litre",
+      "lastupdated": "2022-06-27 03:34:16",
+      "state": "NSW"
+    },
+    {
+      "stationcode": 591,
+      "fueltype": "E10",
+      "price": 207.9,
+      "priceunit": "litre",
+      "lastupdated": "2022-06-26 22:50:40",
+      "state": "NSW"
+    },
+    {
+      "stationcode": 1377,
+      "fueltype": "E10",
+      "price": 213.9,
+      "priceunit": "litre",
+      "lastupdated": "2022-07-06 20:02:34",
+      "state": "NSW"
+    },
+    {
+      "stationcode": 322,
+      "fueltype": "E10",
+      "price": 213.9,
+      "priceunit": "litre",
+      "lastupdated": "2022-07-06 01:09:16",
+      "state": "NSW"
+    },
+    {
+      "stationcode": 2436,
+      "fueltype": "E10",
+      "price": 213.9,
+      "priceunit": "litre",
+      "lastupdated": "2022-07-06 02:16:09",
+      "state": "NSW"
+    },
+    {
+      "stationcode": 63,
+      "fueltype": "E10",
+      "price": 213.9,
+      "priceunit": "litre",
+      "lastupdated": "2022-07-06 00:30:46",
+      "state": "NSW"
+    },
+    {
+      "stationcode": 17297,
+      "fueltype": "E10",
+      "price": 214.9,
+      "priceunit": "litre",
+      "lastupdated": "2022-07-06 02:16:02",
+      "state": "NSW"
+    }
+  ]
+}
