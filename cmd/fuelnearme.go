@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 Val Gridnev <valer.gr@gmail.com>
-
 */
 package cmd
 
