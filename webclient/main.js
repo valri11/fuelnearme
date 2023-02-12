@@ -94,21 +94,23 @@ function pointStyleFunction(feature, resolution) {
   var price = properties["price"];
   var textValue = JSON.stringify(price);
   return new Style({
-     image: new Circle({
-       radius: 14,
-       fill: new Fill({
-         color: [0, 153, 255, 1],
-       }),
-       stroke: new Stroke({
-         color: [255, 255, 255, 1],
-         width: 6,
-       }),
+     image: new Icon({
+         src: './fuelstation.svg',
+         scale: 0.02,
      }),
     text: new Text({
         textAlign: "left",
         offsetX: 14,
         text: textValue,
         font: 'bold 16px Calibri,sans-serif',
+        fill: new Fill({
+        color: '#0000CD',
+      }),
+//      stroke: new Stroke({
+//        color: '#0000CD',
+//        width: 1,
+//      }),
+        overflow: true,
     }),
      zIndex: Infinity,
   });
