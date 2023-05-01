@@ -71,7 +71,11 @@ var fuelnearmeCmd = &cobra.Command{
 			return
 		}
 
-		tm := NewNswApiTokenManager(cfg.NswFuelApi.ApiKey, cfg.NswFuelApi.ApiSecret)
+		tm, err := NewNswApiTokenManager(cfg.NswFuelApi.ApiKey, cfg.NswFuelApi.ApiSecret)
+		if err != nil {
+			log.Fatalf("ERR: %v", err)
+			return
+		}
 
 		addr, err := geocode.AddressFromLatLon(lat, lon, cfg.Mapify.ApiKey)
 		if err != nil {
