@@ -117,7 +117,11 @@ func newFuelHandler() (*fuelHandler, error) {
 	if err != nil {
 		return nil, err
 	}
-	tm := NewNswApiTokenManager(cfg.NswFuelApi.ApiKey, cfg.NswFuelApi.ApiSecret)
+	tm, err := NewNswApiTokenManager(cfg.NswFuelApi.ApiKey, cfg.NswFuelApi.ApiSecret)
+	if err != nil {
+		return nil, err
+	}
+
 	t := fuelHandler{
 		cfg: cfg,
 		tm:  tm,

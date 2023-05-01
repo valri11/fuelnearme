@@ -4,7 +4,10 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 	"time"
+
+	"golang.org/x/oauth2"
 )
 
 type accessTokenRep struct {
@@ -14,55 +17,106 @@ type accessTokenRep struct {
 }
 
 type nswApiTokenManager struct {
-	apiKey    string
-	apiSecret string
-
 	ApiToken  string
 	ExpirySec int
 	IssuedAt  time.Time
+
+	tokenSource oauth2.TokenSource
 }
 
-func NewNswApiTokenManager(apiKey string, apiSecret string) *nswApiTokenManager {
-	tm := nswApiTokenManager{
-		apiKey:    apiKey,
-		apiSecret: apiSecret,
-	}
+type tokenSource struct {
+	tokenURL  string
+	apiKey    string
+	apiSecret string
 
-	return &tm
+	client *http.Client
 }
 
-func (tm *nswApiTokenManager) GetOrRenewApiToken() (string, error) {
+func NewFuelApiTokenSource(tokenUrl string, apiKey string, apiSecret string) (*tokenSource, error) {
 
-	reqUrl := "https://api.onegov.nsw.gov.au/oauth/client_credential/accesstoken?grant_type=client_credentials"
 	client := http.Client{}
 
-	req, err := http.NewRequest("GET", reqUrl, nil)
+	ts := tokenSource{
+		tokenURL:  tokenUrl,
+		apiKey:    apiKey,
+		apiSecret: apiSecret,
+		client:    &client,
+	}
+	return &ts, nil
+}
+
+func (ts *tokenSource) Token() (*oauth2.Token, error) {
+	req, err := http.NewRequest("GET", ts.tokenURL, nil)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	req.Header = http.Header{
 		"Content-Type": {"application/json"},
 	}
 
-	req.SetBasicAuth(tm.apiKey, tm.apiSecret)
+	req.SetBasicAuth(ts.apiKey, ts.apiSecret)
 
-	resp, err := client.Do(req)
+	resp, err := ts.client.Do(req)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	var rep accessTokenRep
 	err = json.Unmarshal(body, &rep)
 	if err != nil {
+		return nil, err
+	}
+
+	issuedAtMsec, err := strconv.Atoi(rep.IssuedAt)
+	if err != nil {
+		return nil, err
+	}
+	expiresIn, err := strconv.Atoi(rep.ExpiresIn)
+	if err != nil {
+		return nil, err
+	}
+
+	expiry := time.UnixMilli(int64(issuedAtMsec))
+	expiry.Add(time.Duration(expiresIn) * time.Second)
+
+	tk := oauth2.Token{
+		AccessToken: rep.AccessToken,
+		TokenType:   "Bearer",
+		Expiry:      expiry,
+	}
+
+	return &tk, nil
+}
+
+func NewNswApiTokenManager(apiKey string, apiSecret string) (*nswApiTokenManager, error) {
+	tokenUrl := "https://api.onegov.nsw.gov.au/oauth/client_credential/accesstoken?grant_type=client_credentials"
+	ts, err := NewFuelApiTokenSource(tokenUrl, apiKey, apiSecret)
+	if err != nil {
+		return nil, err
+	}
+
+	reusableSource := oauth2.ReuseTokenSource(nil, ts)
+
+	tm := nswApiTokenManager{
+		tokenSource: reusableSource,
+	}
+
+	return &tm, nil
+}
+
+func (tm *nswApiTokenManager) GetOrRenewApiToken() (string, error) {
+
+	tk, err := tm.tokenSource.Token()
+	if err != nil {
 		return "", err
 	}
 
-	return rep.AccessToken, nil
+	return tk.AccessToken, nil
 }
